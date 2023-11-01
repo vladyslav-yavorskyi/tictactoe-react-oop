@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.app {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    width: calc((132px * 3) + 5px);
+    height: calc((132px * 3) + 5px);
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.square {
+    width: 132px;
+    height: 132px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #777; /* Border style for each square */
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.square:hover {
+    background-color: #ddd;
+}
