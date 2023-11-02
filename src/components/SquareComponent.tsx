@@ -6,7 +6,8 @@ interface SquareProps {
 
 }
 export default function SquareComponent({square, click}: SquareProps) {
-    return <div onClick={() => click(square)} className="square">
-        {square.selectedBy === "x" ? "x" : square.selectedBy === "o" ? "o" : ""}
+
+    return <div onClick={() => click(square)} className="square" >
+        {square.selectedBy && <div className="container appear" data-content={square.selectedBy === "x" ? "x" : square.selectedBy === "o" ? "o" : ""}></div>}
     </div>
 }

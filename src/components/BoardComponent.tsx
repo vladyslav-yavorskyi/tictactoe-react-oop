@@ -2,28 +2,42 @@ import SquareComponent from "./SquareComponent";
 import {Fragment, useState} from "react";
 import {Square} from "../models/Square";
 import {Board} from "../models/Board";
+import {ComputerPlayer} from "../models/ComputerPlayer";
 
 export interface BoardProps {
     board: Board;
     setBoard: (board: Board) => void;
     restart: () => void;
+    computer: ComputerPlayer;
 }
-export default function BoardComponent({board, setBoard, restart}: BoardProps) {
+export default function BoardComponent({board, setBoard, restart, computer}: BoardProps) {
 
-    const [currentPlayer, setCurrentPlayer] = useState<"x" | "o">("x")
 
     const click = (square: Square) => {
-        if (square.available)
-            square.markSquare(currentPlayer)
-            setCurrentPlayer(currentPlayer === "x" ? "o" : "x")
+        if (square.available) {
+            square.markSquare("x")
             updateBoard()
+        } else return
+
         if (board.checkWinner()) {
             setTimeout(() => {
                 alert(`The winner is ${board.checkWinner()}`)
 
                 restart()
-                setCurrentPlayer("x")
             }, 500)
+        } else {
+            setTimeout(() => {
+                computer.makeMove()
+                updateBoard()
+                if (board.checkWinner()) {
+                    setTimeout(() => {
+                        alert(`The winner is ${board.checkWinner()}`)
+
+                        restart()
+                    }, 500)
+                }
+            }, 500)
+
         }
     }
 

@@ -21,6 +21,19 @@ export class Board {
         return newBoard;
     }
 
+    public isFull() {
+        for (let i = 0; i < 3; i++) {
+            const row = this.squares[i];
+            for (let j = 0; j < row.length; j++) {
+                const square = row[j];
+                if (square.available) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public checkWinner() {
         const squares = this.squares;
         console.log(squares)
