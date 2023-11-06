@@ -3,42 +3,42 @@
     padding: 0;
 }
 
+body {
+    background-color: black;
+}
+
 .app {
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .board {
-    width: calc((132px * 3) + 5px);
-    height: calc((132px * 3) + 5px);
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
 
-}
-.square {
-    width: 132px;
-    height: 132px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
-    border: 1px solid #777; /* Border style for each square */
-    cursor: pointer;
-    transition: 0.2s ease-in-out;
-}
-
-.square:hover {
-    background-color: #ddd;
 }
 
 .container {
     position: relative;
+    text-align: center;
     width: 100%;
     height: 100%;
 }
+
+.square {
+    padding: 70px;
+    text-align: center;
+    font-size: 24px;
+    background-color: #000;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
 
 .container::before,
 .container::after {
@@ -46,6 +46,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    color: white;
     transform: translate(-50%, -50%) scale(0); /* Start with scale(0) to make it small */
     font-size: 120px;
     animation: appear 0.3s forwards;
@@ -60,4 +61,54 @@
     100% {
         transform: translate(-50%, -50%) scale(1); /* Scale it to 1 to make it appear larger */
     }
+}
+
+.board > div:first-child {
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+}
+
+.board > .square:nth-child(2) {
+    border-bottom: 4px solid #fff;
+}
+
+.board > .square:nth-child(3) {
+    border-bottom: 4px solid #fff;
+    border-left: 4px solid #fff;
+}
+
+.board > .square:nth-child(4) {
+    border-right: 4px solid #fff;
+}
+
+.board > .square:nth-child(6) {
+    border-left: 4px solid #fff;
+}
+
+.board > .square:nth-child(7) {
+    border-top: 4px solid #fff;
+    border-right: 4px solid #fff;
+}
+
+.board > .square:nth-child(8) {
+    border-top: 4px solid #fff;
+}
+
+.board > .square:nth-child(9) {
+    border-top: 4px solid #fff;
+    border-left: 4px solid #fff;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    color: #fff;
+    margin-top: 40px;
+}
+
+.scores p {
+    font-size: 24px;
+    font-weight: bold;
 }

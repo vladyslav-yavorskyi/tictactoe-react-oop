@@ -1,8 +1,9 @@
 import SquareComponent from "./SquareComponent";
-import {Fragment, useState} from "react";
+import {Fragment, useContext} from "react";
 import {Square} from "../models/Square";
 import {Board} from "../models/Board";
 import {ComputerPlayer} from "../models/ComputerPlayer";
+import CountContext from "../state/CountContext";
 
 export interface BoardProps {
     board: Board;
@@ -10,31 +11,39 @@ export interface BoardProps {
     restart: () => void;
     computer: ComputerPlayer;
 }
+
 export default function BoardComponent({board, setBoard, restart, computer}: BoardProps) {
 
+    const counter = useContext(CountContext)
 
+    const showWinner = () => {
+        setTimeout(() => {
+            alert(`The winner is ${board.checkWinner()}`)
+            counter[board.checkWinner()](prev => prev + 1)
+            restart()
+        }, 500)
+    }
     const click = (square: Square) => {
-        if (square.available) {
-            square.markSquare("x")
-            updateBoard()
-        } else return
+        if (!square.available) return
+        square.markSquare("x")
+        updateBoard()
 
         if (board.checkWinner()) {
-            setTimeout(() => {
-                alert(`The winner is ${board.checkWinner()}`)
-
-                restart()
-            }, 500)
+            showWinner()
         } else {
             setTimeout(() => {
                 computer.makeMove()
                 updateBoard()
                 if (board.checkWinner()) {
-                    setTimeout(() => {
-                        alert(`The winner is ${board.checkWinner()}`)
-
-                        restart()
-                    }, 500)
+                    showWinner()
+                } else {
+                    if (board.isFull()) {
+                        setTimeout(() => {
+                            alert("Draw")
+                            counter["draw"](prev => prev + 1)
+                            restart()
+                        }, 500)
+                    }
                 }
             }, 500)
 

@@ -36,7 +36,6 @@ export class Board {
 
     public checkWinner() {
         const squares = this.squares;
-        console.log(squares)
         // check rows
         for (let i = 0; i < 3; i++) {
             if (squares[i][0].selectedBy === squares[i][1].selectedBy && squares[i][1].selectedBy === squares[i][2].selectedBy && squares[i][0].selectedBy !== null) {
@@ -56,6 +55,7 @@ export class Board {
         if (squares[0][2].selectedBy === squares[1][1].selectedBy && squares[1][1].selectedBy === squares[2][0].selectedBy && squares[0][2].selectedBy !== null) {
             return squares[0][2].selectedBy;
         }
+
         return null;
     }
 
