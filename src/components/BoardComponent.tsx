@@ -44,7 +44,7 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
                 }
             }, 500)
             updateBoard()
-            
+
 
         }
     }
@@ -54,12 +54,15 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
         setBoard(newBoard);
     }
 
-    return <div className="board">
-        {board.squares.map((row, index: number) => {
-            return <Fragment key={index}>
-                {row.map((square: Square) => <SquareComponent board={board} square={square} click={click}
-                                                              key={square.id}/>)}
-            </Fragment>
-        })}
+    return <div className="game">
+        <div className='board'>
+            {board.squares.map((row, index: number) => {
+                return <Fragment key={index}>
+                    {row.map((square: Square) => <SquareComponent board={board} square={square} click={click}
+                                                                  key={square.id}/>)}
+                </Fragment>
+            })}
+        </div>
+        <div className="restart" style={{display: board.roundEnded ? "block" : "none"}} onClick={restart}>Restart</div>
     </div>
 }
