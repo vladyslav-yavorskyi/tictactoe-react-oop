@@ -17,16 +17,13 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
     const counter = useContext(CountContext)
 
     const showWinner = () => {
-        setTimeout(() => {
-            alert(`The winner is ${board.checkWinner()}`)
-            counter[board.checkWinner()](prev => prev + 1)
-            restart()
-        }, 500)
+        counter[board.checkWinner()]((prev: number) => prev + 1)
+
+        // setTimeout(() => restart(), 500)
     }
     const click = (square: Square) => {
         if (!square.available) return
         square.markSquare("x")
-        updateBoard()
 
         if (board.checkWinner()) {
             showWinner()
@@ -46,6 +43,8 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
                     }
                 }
             }, 500)
+            updateBoard()
+            
 
         }
     }
@@ -58,7 +57,8 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
     return <div className="board">
         {board.squares.map((row, index: number) => {
             return <Fragment key={index}>
-                {row.map((square: Square) => <SquareComponent square={square} click={click} key={square.id}/>)}
+                {row.map((square: Square) => <SquareComponent board={board} square={square} click={click}
+                                                              key={square.id}/>)}
             </Fragment>
         })}
     </div>

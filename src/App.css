@@ -49,8 +49,8 @@ body {
     color: white;
     transform: translate(-50%, -50%) scale(0); /* Start with scale(0) to make it small */
     font-size: 120px;
-    animation: appear 0.3s forwards;
-    animation-delay: 0.3s; /* Delay the animation for 0.3 seconds */
+    animation: appear 0.2s forwards;
+    animation-delay: 0.2s; /* Delay the animation for 0.3 seconds */
 }
 
 /* Define the animation to make them grow */
@@ -111,4 +111,25 @@ body {
 .scores p {
     font-size: 24px;
     font-weight: bold;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.blink {
+    animation: blink 0.3s 3;
+
+}
+
+.darkened {
+    opacity: 0.5;
 }

@@ -2,6 +2,7 @@ export class Square {
     available = true;
     id = Math.random();
     selectedBy: string | null;
+    isWinningSquare = false;
 
     constructor(selectedBy: string | null) {
         this.selectedBy = selectedBy;
