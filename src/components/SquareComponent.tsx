@@ -1,6 +1,7 @@
 import {Square} from "../models/Square";
 import {Board} from "../models/Board";
 
+
 interface SquareProps {
     square: Square;
     board: Board;
@@ -10,7 +11,6 @@ interface SquareProps {
 
 export default function SquareComponent({square, board, click}: SquareProps) {
 
-    console.log(board.roundEnded)
 
     return <div onClick={() => click(square)}
                 className={["square", board.checkWinner() === 'draw' ? 'blink_border' : ''].join(' ')}>
