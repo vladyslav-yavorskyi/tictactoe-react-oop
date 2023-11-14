@@ -49,8 +49,8 @@ body {
     color: white;
     transform: translate(-50%, -50%) scale(0); /* Start with scale(0) to make it small */
     font-size: 120px;
-    animation: appear 0.2s forwards;
-    animation-delay: 0.2s; /* Delay the animation for 0.3 seconds */
+    animation: appear 0.1s forwards;
+    animation-delay: 0.1s; /* Delay the animation for 0.3 seconds */
 }
 
 /* Define the animation to make them grow */

@@ -19,8 +19,9 @@ export class ComputerPlayer {
         }
         if (availableSquares.length === 0)
             return;
-        
+
         const randomSquare = availableSquares[Math.floor(Math.random() * availableSquares.length)];
         squares[randomSquare[0]][randomSquare[1]].markSquare('o');
+
     }
 }

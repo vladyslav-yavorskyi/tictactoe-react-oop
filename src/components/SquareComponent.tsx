@@ -10,7 +10,7 @@ interface SquareProps {
 
 export default function SquareComponent({square, board, click}: SquareProps) {
 
-    console.log(board)
+    console.log(board.roundEnded)
 
     return <div onClick={() => click(square)} className="square">
         {square.selectedBy &&

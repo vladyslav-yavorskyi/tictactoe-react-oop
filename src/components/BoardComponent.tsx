@@ -18,6 +18,7 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
 
     const showWinner = () => {
         counter[board.checkWinner()]((prev: number) => prev + 1)
+        board.endRound()
 
         // setTimeout(() => restart(), 500)
     }
@@ -30,8 +31,11 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
         } else {
             setTimeout(() => {
                 computer.makeMove()
+                board.checkWinner() && board.endRound()
                 updateBoard()
+
                 if (board.checkWinner()) {
+                    board.endRound()
                     showWinner()
                 } else {
                     if (board.isFull()) {

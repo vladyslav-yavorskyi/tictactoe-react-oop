@@ -36,6 +36,10 @@ export class Board {
         return true;
     }
 
+    public endRound() {
+        this.roundEnded = true;
+    }
+
     public checkWinner() {
         const squares = this.squares;
         // check rows
