@@ -114,19 +114,31 @@ body {
 }
 
 @keyframes blink {
-    0% {
+    0%, 100% {
         opacity: 1;
     }
     50% {
         opacity: 0;
     }
-    100% {
-        opacity: 1;
-    }
+
 }
 
 .blink {
     animation: blink 0.3s 3;
+
+}
+
+@keyframes blink_border {
+    0%, 100% {
+        border-color: transparent;
+    }
+    50% {
+        border-color: #fff;
+    }
+}
+
+.blink_border {
+    animation: blink_border 0.25s 3;
 
 }
 

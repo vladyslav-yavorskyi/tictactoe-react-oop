@@ -70,6 +70,11 @@ export class Board {
             return squares[0][2].selectedBy;
         }
 
+        if (this.isFull()) {
+            this.roundEnded = true;
+            return 'draw';
+        }
+
         return null;
     }
 

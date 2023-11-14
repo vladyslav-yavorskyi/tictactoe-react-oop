@@ -18,9 +18,6 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
 
     const showWinner = () => {
         counter[board.checkWinner()]((prev: number) => prev + 1)
-        board.endRound()
-
-        // setTimeout(() => restart(), 500)
     }
     const click = (square: Square) => {
         if (!square.available) return
@@ -40,8 +37,7 @@ export default function BoardComponent({board, setBoard, restart, computer}: Boa
                 } else {
                     if (board.isFull()) {
                         setTimeout(() => {
-                            alert("Draw")
-                            counter["draw"](prev => prev + 1)
+                            showWinner()
                             restart()
                         }, 500)
                     }
